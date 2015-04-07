@@ -1,0 +1,156 @@
+// @NAME = "ရှမ်း"
+// @FONTFAMILY = "Pyidaungsu"
+// @DESCRIPTION = "Burmese Layout"
+// @ICON = "C:\\Users\\pavilion g4\\Pictures\\Keyboards\\Shan.png"
+// @TRACK_CAPSLOCK = "FALSE"
+// @EAT_ALL_UNUSED_KEYS = "FALSE"
+// @US_LAYOUT_BASED = "TRUE"
+
+$baseK = 'qweQWErR' + \
+		'tyuiop' + \
+		'YUIOP' + \
+		"zxcvbn" + \
+		"ZXVN"
+
+$baseU = 	u1078 + u1010 + u107C + u1022 + u107B + uA9E3 + u1019 + u109E + \
+		u1022 + u1015 + u1075 + u1004 + u101D + u1081 + \
+		u107F + u1077 + u101B + u101E + u1080 + \
+		u107D + u1011 + u1076 + u101C + u101A + u107A + \
+		u107E + u107B + uAA6E + u109F
+
+$addK = ',.<>' 
+$addU = u002C + u002E + u104A + u104B 
+             
+$numK = '1234567890' 
+$numU = u1091 + u1092 + u1093 + u1094 + u1095 + \
+		u1096 + u1097 + u1098 + u1099 + u1090                
+
+$aftereK = 'mMjhH;:L'
+$aftereU = u1062 + u1083 + u1087 + u1089 + u1037 + u1038 + u1088 + u108A
+
+$aaK ='mM'
+$aaU = u1062 + u1083 
+
+$lDotK = 'jhH'
+$lDotU = u1087 + u1089 + u1037
+
+$visargaK = ';:L'
+$visargaU = u1038 + u1088 + u108A
+                      
+$udia1K = 'dDAS'
+$udia1U = u102D + u102E + u1035 + u1085
+
+$udia2K = 'J'     
+$udia2U = u1086
+                  
+$ldiaK = 'kl'
+$ldiaU = u102F + u1030
+
+$asatK = 'f'
+$asatU = u103A 
+
+$consU = 	u1075 + u1076 + u1077 + u1004 + u1078 + u101E + \
+		u107A + u1079 + u1010 + u1011 + u107B + u107C + \
+		u1015 + u107D + u107E + u107F + u1019 + u101A + \
+		u101B + u101C + u101D + u1080 + u1081 + u1022
+
+$mediaK = 'BTgG' 
+$mediaU = u103B + u103C + u103D + u1082
+
+$yDiaK = 'B'
+$yDiaU = u103B
+
+$rDiaK = 'T'
+$rDiaU = u103C
+   
+$wDiaK = 'gG'
+$wDiaU = u103D + u1082
+
+//$hDiaK = 'S' 
+//$hDiaU = u103E
+                
+$filler = u200B   
+
+$vowelEK = 'a'
+$vowelEU = u1031
+$shanEK = 's'
+$shanEU = u1084
+
+//$allDiaU = u102F + u1030 + u102D + u102E + u1032 + u1036 + u1037
+//$firstDiaU = u102D + u102F + u1032
+//$secondDiaU = u102D + u1036 + u1037 + u102F  
+
+$stackK = 'F'
+$stackU = u1039 
+//-----------Kinzi--------------
+$kinziK ='*'
+$kinziU = u1004
+
+$kinziK[*] => $kinziU[$1] + u103A + u1039 
+$consU[*] + $kinziK[*] => $kinziU[$2] + u103A + u1039 + $consU[$1] 
+$consU[*] + u1031 + $kinziK[*] => $kinziU[$3] + u103A + u1039 + $1+ $2
+$consU[*] + u1084 + $kinziK[*] => $kinziU[$3] + u103A + u1039 + $1+ $2
+$consU[*] + $mediaU[*] + $kinziK[*] => $kinziU[$3] + u103A + u1039 + $1+ $2
+//----------End-Kinzi----------
+
+$vowelEK => $filler + $vowelEU
+$shanEK => $filler + $shanEU
+
+$stackK => $stackU
+$filler + u1031 + $baseK[*] => $baseU[$3] + u1031
+$filler + u1084 + $baseK[*] => $baseU[$3] + u1084
+u1031 + u1039 + $baseK[*] => u1039 + $baseU[$3] + u1031 
+u1084 + u1039 + $baseK[*] => u1039 + $baseU[$3] + u1084 
+u1031 + $mediaK[*] => $mediaU[$2] + u1031
+u1084 + $mediaK[*] => $mediaU[$2] + u1084
+
+$addK[*]=> $addU[$1]
+$numK[*] => $numU[$1]
+$baseK[*] => $baseU[$1] 
+$aftereK[*] => $aftereU[$1] 
+$asatK => $asatU
+
+//u101E + u103C + u1031 + u102C + $asatK[*] => u102A
+//u1025 + 'D' => u1026  
+$ldiaU[*] + $udia1K[*] => $udia1U[$2] + $1
+$udia2U[*] + $ldiaK[*] => $ldiaU[$2] + $1
+$udia2U[*] + $udia1K[*] => $udia1U[$2] + $1
+u1037 + $udia1K[*] => $udia1U[$2] + $1
+u1037 + $udia2K[*] => $udia2U[$2] + $1
+u1037 + $ldiaK[*] => $ldiaU[$2] + $1
+//u1036 + 'J'=> u1032 + u1036
+u1037 + $aaK[*] => $aaU[$2] + $1
+u1038 + $lDotK[*] => $lDotU[$2] + $1
+//u103A + 'h' => u1037 + u103A
+
+$ldiaK[*] => $ldiaU[$1]
+$udia1K[*] => $udia1U[$1]  
+$udia2K[*] => $udia2U[$1]
+
+$wDiaU[*] + $yDiaK[*] => $yDiaU[$2] + $1
+$wDiaU[*] + $rDiaK[*] => $rDiaU[$2] + $1
+
+$wDiaU[*] + u1031 + $yDiaK[*] => $yDiaU[$3] + $1 + $2
+$wDiaU[*] + u1031 + $rDiaK[*] => $rDiaU[$3] + $1 + $2
+$wDiaU[*] + u1084 + $yDiaK[*] => $yDiaU[$3] + $1 + $2
+$wDiaU[*] + u1084 + $rDiaK[*] => $rDiaU[$3] + $1 + $2
+
+
+$mediaK[*] => $mediaU[$1]
+
+$kinziU[*] + u103A + u1039 + $consU[*] + < VK_BACK > => $consU[$4]
+$kinziU[*] + u103A + u1039 + $consU[*] + u1031 + < VK_BACK > => $consU[$4] + u1031
+$kinziU[*] + u103A + u1039 + $consU[*] + $mediaU[*] + < VK_BACK > => $consU[$4] + $mediaU[$5] 
+
+u200B + u1031 + < VK_BACK > => NULL
+u200B + u1084 + < VK_BACK > => NULL
+$baseU[*] + u1031 + < VK_BACK > => $filler + u1031 
+$mediaU[*] + u1031 + < VK_BACK >=> u1031
+
+$baseU[*] + u1084 + < VK_BACK > => $filler + u1084 
+$mediaU[*] + u1084 + < VK_BACK >=> u1084
+
+u1039 + $consU[*] + u1031 + < VK_BACK > => u1039 + $filler + u1031
+u1039 + $consU[*] + < VK_BACK > => NULL
+
+u1039 + $consU[*] + u1084 + < VK_BACK > => u1039 + $filler + u1084
